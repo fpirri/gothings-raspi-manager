@@ -1,11 +1,13 @@
 #!/bin/bash
-#                                                                    2020-03-12
-#    Installa bugy/script-server sul PC
+#                                                                     2021-11-20
+#    Installa raspi-manager su questa scheda
+#
+#    bugy/script-server adattato alla raspberry
 #
 ################################################################################
 #                                          download latest manager da repository
 #
-wget -O ${HOME}/managerdirs.tar.gz https://github.com/fpirri/gothings-pc-manager/raw/main/managerdirs.tar.gz
+wget -O ${HOME}/managerdirs.tar.gz https://github.com/fpirri/gothings-raspi-manager/raw/main/managerdirs.tar.gz
 #
 ################################################################################
 #                                                             expand in dockrepo
@@ -16,7 +18,7 @@ sudo tar xpf "${HOME}/managerdirs.tar.gz" -C "${HOME}"
 ################################################################################
 #                                                                installa sul PC
 #
-./dockrepo/pc-manager/install_pc_manager
+./dockrepo/raspi-manager/install_raspi_manager
 #
 ################################################################################
 #                                                                Avvisa l'utente
