@@ -18,6 +18,7 @@ sudo tar xpf "${HOME}/managerdirs.tar.gz" -C "${HOME}"
 ################################################################################
 #                                                                installa sul PC
 #
+exit
 ./dockrepo/raspi-manager/install_raspi_manager
 #
 ################################################################################
