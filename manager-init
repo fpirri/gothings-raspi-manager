@@ -9,10 +9,16 @@
 echo
 echo "============================================================ PC GOTHINGS"
 echo
-echo "      GOTHINGS boot loader for PC Manager"
+echo "      GOTHINGS boot loader for Raspi Management"
 echo
 echo "============================================================ version 1.00"
 echo
+
+#@@@@@@@@@@@@
+echo "DA VERIFICARE"
+exit
+#@@@@@@@@@@@@
+
 #
 ################################################################################
 #                                          download latest manager da repository

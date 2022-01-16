@@ -8,7 +8,7 @@
 ################################################################################
 #                                                               log script start
 LogFile="$HOME/firstboot.sh.log"
-echo "`date` manager-boot start" > "${LogFile}"
+echo "`date` manager-boot start" >> "${LogFile}"
 #
 ################################################################################
 #                                                                 Funzioni utili
@@ -46,35 +46,37 @@ setdir() {
 #
 ################################################################################
 #                                                                         avviso
-#*************************** Versione di prova start
 log "Start manager-boot"
-
-exit
-#*************************** Versione di prova end
-
-echo
-echo "============================================================ PC GOTHINGS"
-echo
-echo "      GOTHINGS boot loader for PC Manager"
-echo
-echo "============================================================ version 1.00"
-echo
 #
 ################################################################################
 #                                          download latest manager da repository
 #
 wget -O ${HOME}/managerdirs.tar.gz https://github.com/fpirri/gothings-raspi-manager/raw/main/managerdirs.tar.gz
 #
+#
 ################################################################################
 #                                                             expand in dockrepo
 #
-sudo tar xpf "${HOME}/managerdirs.tar.gz" -C "${HOME}"
+tar xpf "${HOME}/managerdirs.tar.gz" -C "${HOME}"
+Result=$?
+errorstop ${Result} "expand managerdirs.tar.gz error"  "Get managerdirs.tar.gz"
 #
-#
+################################################################################
+#                                                               Lancia il server
+cd /dockrepo/raspi-manager
+echo "provo a lanciare lo script-server ..."
+python3 launcher.py
+
+exit
+#*************************** Versione di prova end
+
+
 ################################################################################
 #                                                                installa sul PC
 #
 ./dockrepo/raspi-manager/install_raspi_manager
+Result=$?
+errorstop ${Result} "install raspi-manager error"  "Install raspi-manager"
 #
 ################################################################################
 #                                                                Avvisa l'utente
