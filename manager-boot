@@ -63,9 +63,15 @@ errorstop ${Result} "expand managerdirs.tar.gz error"  "Get managerdirs.tar.gz"
 #
 ################################################################################
 #                                                               Lancia il server
-cd /dockrepo/raspi-manager
+cd "${HOME}/dockrepo/raspi-manager"
 echo "provo a lanciare lo script-server ..."
+pip install -r requirements.txt
+Result=$?
+errorstop ${Result} "pip error in requirements.txt"  "pip requirements"
+
 python3 launcher.py
+Result=$?
+errorstop ${Result} "error in launcher.py"  "launch script server"
 
 exit
 #*************************** Versione di prova end
