@@ -4,6 +4,46 @@
 #
 #    You get bugy/script-server running on your raspberry
 #
+#
+################################################################################
+#                                                               log script start
+LogFile="$HOME/firstboot.sh.log"
+echo "`date` manager-boot start" > "${LogFile}"
+#
+################################################################################
+#                                                                 Funzioni utili
+#------------
+log() {
+#  $1   stringa da scrivere su firstboot.sh.log
+  echo $1 >> "${LogFile}"
+}
+#------------
+errorstop() {
+#  $1   codice di errore
+#  $2   stringa di errore
+#  $3   label chiamante (per sapere dove ...)
+  if [ $1 -gt 0 ]
+  then
+    echo "$3 | error $1 - $2" >> "$HOME/firstboot.sh.log"
+    echo "`date` firstboot.sh end" >> "$HOME/firstboot.sh.log"
+    exit
+  else
+    echo "$3 | passed" >> "$HOME/firstboot.sh.log"
+  fi
+}
+#
+#---------
+setdir() {
+#  $1  verifica esistenza dir
+#        <-- crea dir se non esiste
+  local Result
+  if [ ! -d "$1" ]; then
+    mkdir "$1"
+    Result=$?
+    errorstop ${Result} "set dir $1 non riuscito"  "set dir $1"
+  fi
+}
+#
 ################################################################################
 #                                                                         avviso
 #*************************** Versione di prova start
